@@ -37,12 +37,10 @@ public class NumbersActivity extends AppCompatActivity {
         LinearLayout rootView = (LinearLayout) findViewById(R.id.root_numbers);
 
         // Adding 10 TextViews (one per word) as children of the layout
-        int i = 0;
-        while(i < words.size()) {
+        for (int i = 0; i < words.size(); i++) {
             TextView wordView = new TextView(this);
             wordView.setText(words.get(i));
             rootView.addView(wordView);
-            i++;
         }
     }
 }
