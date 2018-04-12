@@ -20,6 +20,7 @@ public class NumbersActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Some dummy data to add to the view
         ArrayList<String> words = new ArrayList<>();
         words.add("one");
         words.add("two");
@@ -32,11 +33,16 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("nine");
         words.add("ten");
 
+        // Get the root view to add children to it
         LinearLayout rootView = (LinearLayout) findViewById(R.id.root_numbers);
-        TextView wordView = new TextView(this);
-        wordView.setText(words.get(0));
-        rootView.addView(wordView);
 
+        // Adding 10 TextViews (one per word) as children of the layout
+        int i = 0;
+        while(i < words.size()) {
+            TextView wordView = new TextView(this);
+            wordView.setText(words.get(i));
+            rootView.addView(wordView);
+            i++;
+        }
     }
-
 }
