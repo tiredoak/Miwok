@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class NumbersActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList words = new ArrayList();
+        ArrayList<String> words = new ArrayList<>();
         words.add("one");
         words.add("two");
         words.add("three");
@@ -29,6 +31,11 @@ public class NumbersActivity extends AppCompatActivity {
         words.add("eight");
         words.add("nine");
         words.add("ten");
+
+        LinearLayout rootView = (LinearLayout) findViewById(R.id.root_numbers);
+        TextView wordView = new TextView(this);
+        wordView.setText(words.get(0));
+        rootView.addView(wordView);
 
     }
 
