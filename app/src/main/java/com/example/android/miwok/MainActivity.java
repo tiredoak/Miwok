@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
 
+        // Find the TextView that shows the Numbers category and set a listener on that view
         TextView numbersTextView = (TextView) findViewById(R.id.numbers);
         numbersTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Find the TextView that shows the Family category and set a listener on that view
         TextView familyTextView = (TextView) findViewById(R.id.family);
         familyTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Find the TextView that shows the Colors category and set a listener on that view
         TextView colorsTextView = (TextView) findViewById(R.id.colors);
         colorsTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Find the TextView that shows the Phrases category and set a listener on that view
         TextView phrasesTextView = (TextView) findViewById(R.id.phrases);
         phrasesTextView.setOnClickListener(new View.OnClickListener() {
             @Override
