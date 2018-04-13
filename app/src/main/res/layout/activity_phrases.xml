@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_phrases" />
+    <include layout="@layout/word_list" />
 
 </android.support.design.widget.CoordinatorLayout>
