@@ -16,7 +16,7 @@
         tools:src="@mipmap/ic_launcher" />
 
     <LinearLayout
-        android:id="@+id/list_item"
+        android:id="@+id/text_container"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="88dp"
