@@ -20,6 +20,7 @@
         android:id="@+id/default_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="one"/>
+        tools:text="one"
+        android:paddingBottom="16dp"/>
 
 </LinearLayout>
