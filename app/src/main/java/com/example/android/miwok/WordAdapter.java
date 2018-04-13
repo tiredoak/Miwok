@@ -50,6 +50,9 @@ public class WordAdapter extends ArrayAdapter {
         TextView miwokTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         miwokTextView.setText(currentWord.getmMiwokTranslation());
 
+        ImageView image = (ImageView) listItemView.findViewById(R.id.image);
+        image.setImageResource(currentWord.getmImageResourceId());
+
         return listItemView;
     }
 }
