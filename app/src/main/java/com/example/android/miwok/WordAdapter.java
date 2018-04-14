@@ -3,6 +3,7 @@ package com.example.android.miwok;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordAdapter extends ArrayAdapter {
-    public WordAdapter(@NonNull Context context, ArrayList<Word> words) {
+
+    private int mBackgroundColor;
+
+    public WordAdapter(@NonNull Context context, ArrayList<Word> words, int backgroundColor) {
         /*
         * We initialise the storage for the context and the list.
         * The second argument is used to populate a single TextView
@@ -25,6 +29,7 @@ public class WordAdapter extends ArrayAdapter {
         * is not used so it can be anything (here we use 0).
         */
         super(context, 0, words);
+        mBackgroundColor = backgroundColor;
     }
 
     @NonNull
