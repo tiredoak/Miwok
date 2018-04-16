@@ -16,6 +16,7 @@ public class Word {
      * @param defaultTranslation corresponds to the english word
      * @param miwokTranslation corresponds to the miwok word
      * @param imageResourceId points to the image associated with each image
+     * @param audioResourceId points to the audio associated with each image
      * */
     public Word (String defaultTranslation, String miwokTranslation, int imageResourceId, int audioResourceId) {
         mDefaultTranslation = defaultTranslation;
@@ -24,11 +25,6 @@ public class Word {
         mAudioResourceId = audioResourceId;
     }
 
-    public Word (String defaultTranslation, String miwokTranslation, int imageResourceId) {
-        mDefaultTranslation = defaultTranslation;
-        mMiwokTranslation = miwokTranslation;
-        mImageResourceId = imageResourceId;
-    }
     /**
      * @param defaultTranslation corresponds to the english word
      * @param miwokTranslation corresponds to the miwok word
