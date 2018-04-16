@@ -1,11 +1,15 @@
 package com.example.android.miwok;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,6 +20,29 @@ public class ColorsActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
 
+    private AudioManager mAudioManager;
+
+    private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+            switch (focusChange) {
+                case AudioManager.AUDIOFOCUS_GAIN:
+                    mMediaPlayer.start();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS:
+                    releaseMediaPlayer();
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                    mMediaPlayer.pause();
+                    mMediaPlayer.seekTo(0);
+                    break;
+                case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+                    mMediaPlayer.pause();
+                    mMediaPlayer.seekTo(0);
+            }
+        }
+    };
+
     private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mediaPlayer) {
@@ -24,12 +51,16 @@ public class ColorsActivity extends AppCompatActivity {
     };
 
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Create the AudioManager
+        mAudioManager = getSystemService(AudioManager.class);
 
         // Create a list of words
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -55,10 +86,17 @@ public class ColorsActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 Word currentWord = words.get(position);
-                mMediaPlayer = MediaPlayer.create(ColorsActivity.this, currentWord.getmAudioResourceId());
-                mMediaPlayer.start();
 
-                mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
+                int result = mAudioManager.requestAudioFocus(mAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // AudioFocus was granted
+                    // We can now start playing the audio file
+                    mMediaPlayer = MediaPlayer.create(ColorsActivity.this, currentWord.getmAudioResourceId());
+                    mMediaPlayer.start();
+                    // Set the completion listener to deal with AudioFocus changes
+                    mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
+                }
             }
         });
     }
