@@ -25,6 +25,12 @@ public class Word {
         mAudioResourceId = audioResourceId;
     }
 
+    public Word (String defaultTranslation, String miwokTranslation, int audioResourceId) {
+        mDefaultTranslation = defaultTranslation;
+        mMiwokTranslation = miwokTranslation;
+        mAudioResourceId = audioResourceId;
+    }
+
     /**
      * @param defaultTranslation corresponds to the english word
      * @param miwokTranslation corresponds to the miwok word
