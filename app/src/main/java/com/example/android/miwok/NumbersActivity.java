@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
-    MediaPlayer player;
+    private MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class NumbersActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         // Click listener for each item view in the list to play the pronunciation file
-        // For now it just plays the same file, regardless of the list item clicked
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
